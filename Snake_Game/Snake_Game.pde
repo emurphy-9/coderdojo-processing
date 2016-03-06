@@ -1,9 +1,11 @@
-float[] x = new float[20];
-float[] y = new float[20];
+final int PADDING = 15;
+final int NUMBER_OF_FOOD = 50;
+final int NUMBER_OF_SEGMENTS = 20;
+int playerScore = 0;
 float segLength = 18;
 
-int PADDING = 15;
-int NUMBER_OF_FOOD = 20;
+float[] x = new float[NUMBER_OF_SEGMENTS];
+float[] y = new float[NUMBER_OF_SEGMENTS];
 ArrayList<Float> foodX = new ArrayList<Float>();
 ArrayList<Float> foodY = new ArrayList<Float>();
 
@@ -28,6 +30,11 @@ void draw() {
   }
   if(!foodX.isEmpty()) checkFood();
   if(!foodX.isEmpty()) drawFood();
+  drawScore();
+  noCursor();
+  fill(255, 0, 0);
+  ellipse(mouseX, mouseY, PADDING, PADDING);
+  fill(255, 255, 255);
 }
 
 /*
@@ -53,6 +60,11 @@ void segment(float x, float y, float a) {
   popMatrix();
 }
 
+
+void drawScore(){
+  text("Score: " + playerScore, 10, 25);
+}
+
 /*
   
 */
@@ -71,8 +83,6 @@ void generateFood(){
   
 */
 void drawFood(){
-  text("Mouse: " + mouseX + ", "+ mouseY, 10, 10); 
-  text("Food: " + foodX.get(0) + ", "+ foodY.get(0), 10, 55); 
   for(int i = 0; i < foodX.size(); i = i + 1){
     ellipse(foodX.get(i), foodY.get(i), PADDING, PADDING);
   }
@@ -109,6 +119,7 @@ void checkFood(){
     if (center) {
       foodX.remove(i);
       foodY.remove(i);
+      playerScore = playerScore + 10;
       println( "center" );
     }
     else if( betweenLeftAndRight ) println( "betweenLeftAndRight" );
@@ -122,6 +133,5 @@ void checkFood(){
     else if( bottom ) println( "we are to the bottom" );
     else if( top ) println( "we are to the top" );
     else println("We're on top!"); 
-    println( "************* "+ mouseX + " " + mouseY + ", " + (xValFood) +" " + yValFood);
   }
 }
