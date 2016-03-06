@@ -1,0 +1,1 @@
+This game could be extended to include some form of random generation of "food" for the snake to eat.
