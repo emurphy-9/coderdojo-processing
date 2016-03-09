@@ -14,9 +14,12 @@ def draw():
     global b, extras
     background(255)
     b.draw()
-    b.followMouse(1)
-    for e in extras:
-        e.draw()
-        if(b.collision(e)):
-            extras.remove(e)
-            b.grow(e.radius/4)
+    if(not extras):
+        text("YOU WIN!", 200, 200)
+    else:
+        b.followMouse(1)
+        for e in extras:
+            e.draw()
+            if(b.collision(e)):
+                extras.remove(e)
+                b.grow(e.radius/4)
