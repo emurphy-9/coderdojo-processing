@@ -22,8 +22,9 @@ boolean gameOver = false;
   
 */
 void setup() {
-  size(640, 360);
-  strokeWeight(9);
+    
+  fullScreen();
+  //strokeWeight(9);
   stroke(255, 100);
   generateFood();
   generateEnemies();
@@ -85,7 +86,7 @@ void drawScore(){
 }
 
 void drawPlayerHead(){
-  noCursor();
+ // noCursor();
   fill(255, 0, 0);
   ellipse(mouseX, mouseY, PADDING, PADDING);
   fill(255, 255, 255);
