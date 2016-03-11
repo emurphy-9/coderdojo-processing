@@ -48,4 +48,8 @@ void draw() {
     //rotate(radians(angle));
     //rect(-50, -50, 100, 100);
     //angle++;
+    
+    //Text on screen
+    //textSize(40);
+    //text("This is my first program\n -<Name>", 75, 460);
 }

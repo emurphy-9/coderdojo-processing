@@ -1,9 +1,16 @@
+import processing.sound.*;
+SoundFile file;
+SoundFile click;
+
 color backgroundColour;
 color cursorColour;
 color squareColour;
 color circleColour;
 color squareStroke;
 color circleStroke;
+
+boolean pictureOn;
+PImage backgroundPic;
 
 int circleX;
 int circleY;
@@ -30,11 +37,19 @@ void setup() {
   radius2 = 140;
   circleColour = color(3, 249, 213);
   circleStroke = color(0, 0, 0);
+  
+  pictureOn = false;
+  backgroundPic = loadImage("clouds.jpg");
+  
+  click = new SoundFile(this, "blop.wav");
+  file = new SoundFile(this, "applause.wav");
 }
 
 void draw() {
   background(backgroundColour);
-  
+  if(pictureOn) {
+    image(backgroundPic, 0, 0, width, height);
+  }
   noCursor();
   
   stroke(squareStroke);  
@@ -48,7 +63,35 @@ void draw() {
   stroke(cursorColour);
   line(mouseX, mouseY - lineLength/2, mouseX, mouseY + lineLength/2);
   line(mouseX - lineLength/2, mouseY, mouseX + lineLength/2, mouseY);
-
+  if(keyPressed) {
+    if(key == 'b') {
+      backgroundColour = color(0, 0, 0);
+    }
+    if(key == 'r') {
+       backgroundColour = color(255, 0, 0); 
+    }
+    if(key == 'w') {
+       backgroundColour = color(255, 255, 255); 
+    }
+    if(key == 'i') {
+      sideLength++; 
+    }
+    if(key == 'd') {
+       sideLength--; 
+    }
+    if(key == '1') {
+      radius1++;
+    }
+    if(key == '2') {
+      radius1--;
+    }
+    if(key == '3') {
+      radius2++;
+    }
+    if(key == '4') {
+      radius2--;
+    }
+  }
 }
 
 void keyPressed() {
@@ -68,33 +111,14 @@ void keyPressed() {
         break;
     }
   }
-  if(key == 'b') {
-    backgroundColour = color(0, 0, 0);
-  }
-  if(key == 'r') {
-     backgroundColour = color(255, 0, 0); 
-  }
-  if(key == 'i') {
-    sideLength++; 
-  }
-  if(key == 'd') {
-     sideLength--; 
-  }
-  if(key == '1') {
-    radius1++;
-  }
-  if(key == '2') {
-    radius1--;
-  }
-  if(key == '3') {
-    radius2++;
-  }
-  if(key == '4') {
-    radius2--;
+  if(key == 'p') {
+    pictureOn = !pictureOn;
+    file.play();
   }
 }
 
 void mouseClicked() {  
   circleX = mouseX;
   circleY = mouseY;
+  click.play();
 }
