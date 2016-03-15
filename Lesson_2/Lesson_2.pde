@@ -20,6 +20,7 @@ int lineLength;
 int sideLength;
 int radius1;
 int radius2;
+int speed = 5;
 
 void setup() {
   size(600, 600);
@@ -98,16 +99,16 @@ void keyPressed() {
   if(key == CODED) {
     switch(keyCode) {
       case UP:
-        rectY--;
+        rectY -= speed;
         break;
       case DOWN: 
-        rectY++;
+        rectY += speed;
         break;
       case LEFT:
-        rectX--;
+        rectX -= speed;
         break;
       case RIGHT:
-        rectX++;
+        rectX += speed;
         break;
     }
   }
